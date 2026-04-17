@@ -1,11 +1,6 @@
 import React from "react";
 
 function TopRated() {
-	const sectionStyle = {
-		fontFamily: "Times New Roman",
-		textAlign: "center",
-	};
-
 	const users = [
 		{
 			name: "Aarav Sharma",
@@ -23,56 +18,68 @@ function TopRated() {
 				"Very user-friendly platform. Highly recommended for healthcare needs.",
 		},
 	];
-	const headingStyle = {
-		color: "#000",
-		fontWeight: "bold",
-		fontSize: "36px",
-	};
 
-	const textStyle = {
-		color: "#023e8a",
-		fontSize: "18px",
-		fontWeight: "normal",
-	};
-	const textstyle = {
-		color: "#21295c",
-		fontSize: "18px",
-		fontWeight: "bold",
+	const cardStyle = {
+		background: "linear-gradient(135deg, #80ced7, #48cae4)",
+		borderRadius: "15px",
+		padding: "20px",
+		transition: "0.3s",
+		boxShadow: "0 10px 25px rgba(0,0,0,0.5)",
 	};
 
 	return (
-		<div className="container my-5" style={sectionStyle}>
-			<h2 className="fw-bold" style={headingStyle}>
+		<div className="container my-5 text-center">
+			<br />
+			<br />
+			<h2
+				className="fw-bold display-6"
+				style={{ fontFamily: "Times New Roman" }}>
 				Top User Feedback
 			</h2>
 
-			<p className="mt-3 fw-bold" style={textStyle}>
+			<h4
+				className="mt-3 fw-bold"
+				style={{ color: "#023e8a", fontFamily: "Times New Roman" }}>
 				User reviews and testimonials
-			</p>
+			</h4>
 
 			<div className="row mt-5">
 				{users.map((user, index) => (
-					<div className="col-md-4 gap-3" key={index}>
+					<div className="col-md-4" key={index}>
 						<div
-							className="card p-3 shadow-sm h-100"
-							style={{
-								borderRadius: "10px",
-								backgroundColor: "#80ced7",
-								color: "#21295c",
-							}}>
+							style={cardStyle}
+							onMouseEnter={(e) =>
+								(e.currentTarget.style.transform = "scale(1.05)")
+							}
+							onMouseLeave={(e) =>
+								(e.currentTarget.style.transform = "scale(1)")
+							}>
 							<h5
-								className="fw"
-								style={{ fontSize: "30px", fontWeight: "bolder" }}>
+								style={{
+									fontSize: "30px",
+									fontWeight: "bolder",
+									fontFamily: "Times New Roman",
+								}}>
 								{user.name}
 							</h5>
 
-							<p style={textstyle} className="mt-3">
+							<p
+								className="mt-3 fw-bold"
+								style={{
+									fontFamily: "Times New Roman",
+									fontWeight: "bold",
+									fontSize: "20px",
+								}}>
 								“{user.feedback}”
 							</p>
 
 							<p
 								className="fw-bold mt-3"
-								style={{ fontWeight: "bold", fontSize: "30px" }}>
+								style={{
+									fontFamily: "Times New Roman",
+									fontWeight: "bold",
+									fontSize: "28px",
+								}}>
 								⭐ 5.0
 							</p>
 						</div>

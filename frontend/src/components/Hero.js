@@ -1,56 +1,66 @@
-import React from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Hero() {
-	const mainStyle = {
-		backgroundColor: "#caf0f8",
-		fontFamily: "Times New Roman",
-	};
+	const navigate = useNavigate();
 
-	const textStyle = {
-		fontSize: "20px",
-		fontWeight: "bold",
+	const [location, setLocation] = useState("");
+	const [category, setCategory] = useState("healthcare");
+
+	const handleSearch = () => {
+		if (category === "healthcare") {
+			navigate(`/healthcare/general?location=${location}`);
+		} else if (category === "wellness") {
+			navigate(`/wellness?location=${location}`);
+		} else if (category === "counseling") {
+			navigate(`/counseling?location=${location}`);
+		}
 	};
 
 	return (
-		<div className="text-center py-5" style={mainStyle}>
-			<br />
-			<h1 className="fw-bold">
+		<div
+			className="text-center py-5"
+			style={{
+				background: "linear-gradient(to right, #caf0f8, #90e0ef)",
+				fontFamily: "Times New Roman",
+			}}>
+			<h1 className="fw-bold display-4">
 				Find and Book Trusted Healthcare <br />
 				<span style={{ color: "#023e8a" }}>NEAR YOU</span>
 			</h1>
 
-			<p className="mt-3" style={textStyle}>
+			<h3 className="mt-3 fw-bold" style={{ color: "#03045e" }}>
 				Doctors, Therapists, Wellness Experts - all in one place.
-			</p>
+			</h3>
 			<br />
-			<div className="d-flex justify-content-center mt-3 flex-wrap gap-3">
+			<div className="d-flex justify-content-center mt-4 gap-3 flex-wrap">
 				<input
-					className="form-control"
-					style={{ width: "200px", fontSize: "20px" }}
+					className="form-control shadow"
+					style={{ width: "220px" }}
 					placeholder="Enter Location"
+					value={location}
+					onChange={(e) => setLocation(e.target.value)}
 				/>
-				<br />
-				<br />
+
 				<select
-					className="form-select"
-					style={{ width: "200px", fontSize: "20px" }}
-					placeholder="Select Category">
-					<option>Healthcare</option>
-					<option>Wellness</option>
-					<option>Counseling</option>
+					className="form-select shadow"
+					style={{ width: "220px" }}
+					onChange={(e) => setCategory(e.target.value)}>
+					<option value="healthcare">Healthcare</option>
+					<option value="wellness">Wellness</option>
+					<option value="counseling">Counseling</option>
 				</select>
 
 				<button
-					className="btn btn-primary px-4 fw-bold"
+					onClick={handleSearch}
+					className="fw-bold"
 					style={{
-						height: "69px",
+						height: "60px",
 						width: "150px",
-						borderRadius: "10px",
-						fontSize: "25px",
-						backgroundColor: "#023e8a",
+						borderRadius: "12px",
+						background: "linear-gradient(135deg, #023e8a, #0077b6)",
 						color: "#fff",
-						border: "2px solid #0077a6",
-						fontFamily: "Times New Roman, serif",
+						border: "none",
 					}}>
 					Search
 				</button>

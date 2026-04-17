@@ -1,36 +1,79 @@
 import React from "react";
 import { Link } from "react-router-dom";
+
 function Footer() {
-	const footerStyle={
-		backgroundColor:"#0096c7",
+	const footerStyle = {
+		background: "linear-gradient(135deg, #0077b6, #023e8a)",
+		color: "#fff",
+		fontFamily: "Times New Roman",
 	};
-	const textStyle={
-		fontFamily:"Times New Roman",
-		color:"#fff",
-		fontWeight:"30px"
-	};
-	const favIcon={
-		color:"#fff",
-		fontSize:"26px",
+
+	const headingStyle = {
 		fontWeight: "bold",
+		fontSize: "18px",
+		marginBottom: "5px",
 	};
-	const textBold={
-		fontWeight:"bold",
-		
+
+	const iconStyle = {
+		fontSize: "26px",
+		color: "#fff",
+		transition: "0.3s",
 	};
+
 	return (
-		<footer className="p-4 mt-5" style={footerStyle}>
-			<div className="container text-center" style={textStyle}>
-				<p style={textBold}>Contact Us:</p>
-				<p> appoinTO@email.com | +91 1234567890</p>
-				<p style={textBold}>Follow us:</p>
-				<p> 
-					<Link to="/facebook" style={favIcon}><i className="fa-brands fa-facebook"></i></Link>
-					&ensp;&ensp;
-					<Link to="/twitter" style={favIcon}><i className="fa-brands fa-x-twitter"></i></Link> 
-					&ensp;&ensp;
-					<Link to="/instagram" style={favIcon}><i className="fa-brands fa-instagram"></i></Link></p>
-				<p style={textBold}>© 2026 AppoinTO</p>
+		<footer className="mt-5 pt-5 pb-3" style={footerStyle}>
+			<div className="container text-center">
+				<div className="mb-4">
+					<h3 style={headingStyle}>Contact Us</h3>
+					<h4>appointo@email.com | +91 1234567890</h4>
+				</div>
+
+				<div className="mb-4">
+					<p style={headingStyle}>Follow Us</p>
+
+					<div className="d-flex justify-content-center gap-4 mt-2">
+						<Link
+							to="/facebook"
+							style={iconStyle}
+							onMouseEnter={(e) =>
+								(e.currentTarget.style.transform = "scale(1.2)")
+							}
+							onMouseLeave={(e) =>
+								(e.currentTarget.style.transform = "scale(1)")
+							}>
+							<i className="fa-brands fa-facebook"></i>
+						</Link>
+
+						<Link
+							to="/twitter"
+							style={iconStyle}
+							onMouseEnter={(e) =>
+								(e.currentTarget.style.transform = "scale(1.2)")
+							}
+							onMouseLeave={(e) =>
+								(e.currentTarget.style.transform = "scale(1)")
+							}>
+							<i className="fa-brands fa-x-twitter"></i>
+						</Link>
+
+						<Link
+							to="/instagram"
+							style={iconStyle}
+							onMouseEnter={(e) =>
+								(e.currentTarget.style.transform = "scale(1.2)")
+							}
+							onMouseLeave={(e) =>
+								(e.currentTarget.style.transform = "scale(1)")
+							}>
+							<i className="fa-brands fa-instagram"></i>
+						</Link>
+					</div>
+				</div>
+
+				{/* Divider */}
+				<hr style={{ borderColor: "rgba(255,255,255,0.3)" }} />
+
+				<p className="mt-3 fw-bold">© 2026 AppoinTO</p>
 			</div>
 		</footer>
 	);

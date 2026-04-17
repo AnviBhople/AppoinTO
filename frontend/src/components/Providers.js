@@ -1,17 +1,6 @@
 import React from "react";
 
 function Providers() {
-	const headingStyle = {
-		color: "#000",
-		fontWeight: "bold",
-		fontSize: "36px",
-	};
-
-	const textStyle = {
-		color: "#023e8a",
-		fontSize: "18px",
-		fontWeight: "bold",
-	};
 	const providers = [
 		{
 			name: "City Hospital",
@@ -33,49 +22,62 @@ function Providers() {
 		},
 	];
 
-	const sectionStyle = {
+	const cardStyle = {
+		background: "linear-gradient(135deg, #80ced7, #48cae4)",
+		borderRadius: "15px",
+		transition: "0.3s",
 		fontFamily: "Times New Roman",
-		textAlign: "center",
+		boxShadow: "0 10px 25px rgba(0,0,0,0.5)",
 	};
-	const btnStyle = {
-		height: "50px",
-		width: "250px",
-		borderRadius: "10px",
-		fontSize: "19px",
-		backgroundColor: "#023e8a",
-		color: "#fff",
-		border: "2px solid #0077a6",
 
-		fontFamily: "Times New Roman, serif",
-	};
 	return (
-		<div className="container my-5" style={sectionStyle}>
-			<h2 className="fw-bold" style={headingStyle}>
+		<div className="container my-5 text-center">
+			<br />
+			<br />
+			<h2
+				className="fw-bold display-6"
+				style={{ fontFamily: "Times New Roman" }}>
 				Nearby Providers
 			</h2>
 
-			<p className="mt-2" style={textStyle}>
+			<h4
+				className="mt-2 fw-bold"
+				style={{ color: "#023e8a", fontFamily: "Times New Roman" }}>
 				Discover trusted professionals near your location
-			</p>
+			</h4>
+			<br />
 
 			<div className="row mt-4">
 				{providers.map((p, index) => (
 					<div className="col-md-4" key={index}>
 						<div
-							className="card p-4 shadow-sm h-100"
-							style={{ backgroundColor: "#80ced7", textAlign: "left" }}>
-							<h5
-								className="fw-bold"
-								style={{ fontWeight: "bold", fontSize: "30px" }}>
+							className="card p-4 h-100 text-start"
+							style={cardStyle}
+							onMouseEnter={(e) =>
+								(e.currentTarget.style.transform = "translateY(-10px)")
+							}
+							onMouseLeave={(e) =>
+								(e.currentTarget.style.transform = "translateY(0)")
+							}>
+							<h5 className="fw-bold" style={{ fontSize: "28px" }}>
 								{p.name}
 							</h5>
-							<p style={{ fontWeight: "bold", fontSize: "20px" }}>
-								{p.category}
-							</p>
-							<p style={{ fontWeight: "bold", fontSize: "19px" }}>
+
+							<p className="fw-bold">{p.category}</p>
+
+							<p className="fw-bold">
 								⭐ {p.rating} | {p.distance}
 							</p>
-							<button className="btn btn-success fw-bold" style={btnStyle}>
+
+							<button
+								className="fw-bold mt-2"
+								style={{
+									height: "50px",
+									borderRadius: "10px",
+									background: "linear-gradient(135deg, #023e8a, #0077b6)",
+									color: "#fff",
+									border: "none",
+								}}>
 								Book Now
 							</button>
 						</div>

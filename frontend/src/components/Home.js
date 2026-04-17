@@ -6,12 +6,13 @@ import TopRated from "./TopRated";
 
 function Home() {
 	return (
-		<div style={{ backgroundColor: "#caf0f8" }}>
-			<Hero /> <br />
+		<div
+			style={{
+				background: "linear-gradient(to bottom, #caf0f8, #ade8f4)",
+			}}>
+			<Hero />
 			<Categories />
-			<br />
 			<Providers />
-			<br />
 			<TopRated />
 		</div>
 	);
