@@ -4,12 +4,10 @@ function Navbar() {
 	return (
 		<nav className="navbar navbar-expand-lg bg-white shadow-sm">
 			<div className="container">
-				{/* Logo */}
 				<a className="navbar-brand fw-bold" href="#">
 					AppoinTO
 				</a>
 
-				{/* Toggle button (mobile) */}
 				<button
 					className="navbar-toggler"
 					type="button"
@@ -18,9 +16,7 @@ function Navbar() {
 					<span className="navbar-toggler-icon"></span>
 				</button>
 
-				{/* Navbar content */}
 				<div className="collapse navbar-collapse" id="navbarContent">
-					{/* Left side links */}
 					<ul className="navbar-nav ms-auto mb-2 mb-lg-0">
 						<li className="nav-item">
 							<a className="nav-link" href="#">
