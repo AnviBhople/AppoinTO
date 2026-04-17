@@ -1,11 +1,9 @@
 import React from "react";
-// import healthcareImg from "./images/healthcare.png";
-// import wellnessImg from "./images/wellness.png";
-// import counselingImg from "./images/counseling.png";
 
 function Categories() {
 	const sectionStyle = {
 		backgroundColor: "#caf0f8",
+
 		fontFamily: "Times New Roman",
 		textAlign: "center",
 	};
@@ -25,6 +23,9 @@ function Categories() {
 	const cardHead = {
 		fontSize: "30px",
 	};
+	const card = {
+		baclgroundColor: "#80ced7",
+	};
 
 	return (
 		<div className="container my-5" style={sectionStyle}>
@@ -36,7 +37,7 @@ function Categories() {
 
 			<div className="row mt-5">
 				<div className="col-md-4">
-					<div className="card p-4 shadow-sm h-100">
+					<div className="card p-4 shadow-sm h-100" style={card}>
 						<img
 							// src={healthcareImg}
 							src="https://via.placeholder.com/150"
