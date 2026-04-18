@@ -3,16 +3,26 @@ import Hero from "./Hero";
 import Categories from "./Categories";
 import Providers from "./Providers";
 import TopRated from "./TopRated";
-
+import HomeInfoSection from "./HomeInfoSection";
 function Home() {
 	return (
 		<div
 			style={{
-				background: "linear-gradient(to bottom, #caf0f8, #ade8f4)",
+				// backgroundColor: "#caf0f8",
+				backgroundColor: "#f5f3f4",
 			}}>
 			<Hero />
+			<br />
+			<br />
+			<HomeInfoSection />
+			<br />
+			<br />
 			<Categories />
+			<br />
+			<br />
 			<Providers />
+			<br />
+			<br />
 			<TopRated />
 		</div>
 	);

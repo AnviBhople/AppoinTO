@@ -2,17 +2,18 @@ import React, { useState } from "react";
 
 function Contact() {
 	const mainStyle = {
-		background: "linear-gradient(to bottom, #caf0f8, #ade8f4)",
+		backgroundColor: "#f5f3f4",
 		fontFamily: "Times New Roman",
 		minHeight: "100vh",
 	};
 
 	const cardStyle = {
-		background: "linear-gradient(135deg, #80ced7, #48cae4)",
+		background: "linear-gradient(135deg, #023e8a, #0077b6)",
 		borderRadius: "15px",
 		padding: "30px",
-		boxShadow: "0 10px 25px rgba(0,0,0,0.5)",
+		boxShadow: "0 10px 25px rgba(0,0,0,0.7)",
 		transition: "0.3s ease",
+		color: "white",
 		height: "100%",
 	};
 
@@ -23,14 +24,15 @@ function Contact() {
 	};
 
 	const buttonStyle = {
-		background: "#023e8a",
-		color: "#fff",
-		border: "none",
+		background: "#fff",
+		color: "#023e8a",
+		border: "2px solid #023e8a",
 		borderRadius: "10px",
 		padding: "12px",
 		fontWeight: "bold",
 		fontSize: "20px",
 		transition: "0.3s",
+		marginLeft: "200px",
 	};
 
 	const [formData, setFormData] = useState({
@@ -145,7 +147,7 @@ function Contact() {
 
 								<button
 									type="submit"
-									className="w-100"
+									className="w-70"
 									style={buttonStyle}
 									onMouseEnter={(e) =>
 										(e.currentTarget.style.transform = "scale(1.05)")

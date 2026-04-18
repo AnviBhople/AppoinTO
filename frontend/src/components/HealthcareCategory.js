@@ -1,9 +1,12 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useParams, useLocation } from "react-router-dom";
 import { providers } from "../data/healthcareProviders";
 
 function HealthcareCategory() {
 	const { category } = useParams();
+	const navigate = useNavigate();
 
 	const location = useLocation();
 	const queryParams = new URLSearchParams(location.search);
@@ -35,7 +38,7 @@ function HealthcareCategory() {
 	return (
 		<div
 			style={{
-				background: "linear-gradient(to bottom, #caf0f8, #ade8f4)",
+				backgroundColor: "#f5f3f4",
 				minHeight: "100vh",
 				fontFamily: "Times New Roman",
 			}}
@@ -67,11 +70,13 @@ function HealthcareCategory() {
 						<div className="col-md-4" key={p.id}>
 							<div
 								style={{
-									background: "linear-gradient(135deg, #80ced7, #48cae4)",
-									borderRadius: "15px",
+									background: "linear-gradient(135deg, #023e8a, #0077b6)",
+									borderRadius: "10px",
+									border: "2px sloid white",
 									padding: "20px",
-									boxShadow: "0 10px 25px rgba(0,0,0,0.15)",
+									boxShadow: "0 10px 25px rgba(0,0,0,0.7)",
 									transition: "0.3s",
+									color: "white",
 								}}
 								onMouseEnter={(e) =>
 									(e.currentTarget.style.transform =
@@ -80,7 +85,7 @@ function HealthcareCategory() {
 								onMouseLeave={(e) =>
 									(e.currentTarget.style.transform = "scale(1) translateY(0)")
 								}>
-								<h4 className="fw-bold" style={{ fontSize: "23px" }}>
+								<h4 className="fw-bold" style={{ fontSize: "25px" }}>
 									{p.name}
 								</h4>
 
@@ -90,20 +95,41 @@ function HealthcareCategory() {
 
 								<p className="fw-bold">⭐ {p.rating}</p>
 
-								<p style={{ fontWeight: "bold", color: "#023e8a" }}>
+								<p style={{ fontWeight: "bold", color: "#fff" }}>
 									📍 {p.address}
 								</p>
 
 								<div className="d-flex gap-2 mt-3">
-									<button className="btn btn-dark w-50">Book Now</button>
+									<button
+										className="btn btn-dark w-50"
+										onClick={() => navigate(`/book/${p.category}/${p.id}`)}>
+										Book Now
+									</button>
 
-									<a
-										href={`https://www.google.com/maps/search/?api=1&query=${p.name}+${p.address}`}
+									<Link
+										to={`https://www.google.com/maps/search/?api=1&query=${p.name}+${p.address}`}
 										target="_blank"
 										rel="noreferrer"
-										className="btn btn-primary w-50">
+										className="btn w-50 fw-bold"
+										style={{
+											backgroundColor: "#ffffff",
+											border: "2px solid #0a66c2",
+											color: "#0a66c2",
+											fontFamily: "Times New Roman",
+											borderRadius: "8px",
+											textAlign: "center",
+											transition: "0.3s",
+										}}
+										onMouseEnter={(e) => {
+											e.currentTarget.style.backgroundColor = "#fff";
+											e.currentTarget.style.color = "#0a66c2";
+										}}
+										onMouseLeave={(e) => {
+											e.currentTarget.style.backgroundColor = "#ffffff";
+											e.currentTarget.style.color = "#0a66c2";
+										}}>
 										View Map
-									</a>
+									</Link>
 								</div>
 							</div>
 						</div>

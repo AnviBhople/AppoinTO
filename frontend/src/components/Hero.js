@@ -17,11 +17,20 @@ function Hero() {
 		}
 	};
 
+	const inputStyle = {
+		height: "60px",
+		width: "250px",
+		fontSize: "larger",
+		boxShadow: "0 20px 25px rgba(0,0,0,0.7)",
+		border: "2px solid brown",
+	};
+
 	return (
 		<div
 			className="text-center py-5"
 			style={{
-				background: "linear-gradient(to right, #caf0f8, #90e0ef)",
+				// backgroundColor: "#caf0f8",
+				backgroundColor: "#f5f3f4",
 				fontFamily: "Times New Roman",
 			}}>
 			<h1 className="fw-bold display-4">
@@ -36,7 +45,7 @@ function Hero() {
 			<div className="d-flex justify-content-center mt-4 gap-3 flex-wrap">
 				<input
 					className="form-control shadow"
-					style={{ width: "220px" }}
+					style={inputStyle}
 					placeholder="Enter Location"
 					value={location}
 					onChange={(e) => setLocation(e.target.value)}
@@ -44,7 +53,7 @@ function Hero() {
 
 				<select
 					className="form-select shadow"
-					style={{ width: "220px" }}
+					style={inputStyle}
 					onChange={(e) => setCategory(e.target.value)}>
 					<option value="healthcare">Healthcare</option>
 					<option value="wellness">Wellness</option>
@@ -61,6 +70,7 @@ function Hero() {
 						background: "linear-gradient(135deg, #023e8a, #0077b6)",
 						color: "#fff",
 						border: "none",
+						fontSize: "20px",
 					}}>
 					Search
 				</button>

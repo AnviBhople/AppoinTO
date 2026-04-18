@@ -20,11 +20,13 @@ function TopRated() {
 	];
 
 	const cardStyle = {
-		background: "linear-gradient(135deg, #80ced7, #48cae4)",
+		background: "linear-gradient(135deg, #023e8a, #0077b6)",
 		borderRadius: "15px",
 		padding: "20px",
 		transition: "0.3s",
-		boxShadow: "0 10px 25px rgba(0,0,0,0.5)",
+		border: "1px solid white",
+		color: "white",
+		boxShadow: "0 10px 25px rgba(0,0,0,0.7)",
 	};
 
 	return (
@@ -39,8 +41,14 @@ function TopRated() {
 
 			<h4
 				className="mt-3 fw-bold"
-				style={{ color: "#023e8a", fontFamily: "Times New Roman" }}>
-				User reviews and testimonials
+				style={{
+					color: "#023e8a",
+					fontFamily: "Times New Roman",
+					textAlign: "center",
+				}}>
+				Read genuine feedback from people who have used our platform to find
+				trusted healthcare, wellness, and counseling services. Their experiences
+				help others make confident and informed decisions.{" "}
 			</h4>
 
 			<div className="row mt-5">
@@ -57,7 +65,7 @@ function TopRated() {
 							<h5
 								style={{
 									fontSize: "30px",
-									fontWeight: "bolder",
+									fontWeight: "bold",
 									fontFamily: "Times New Roman",
 								}}>
 								{user.name}
@@ -67,8 +75,8 @@ function TopRated() {
 								className="mt-3 fw-bold"
 								style={{
 									fontFamily: "Times New Roman",
-									fontWeight: "bold",
 									fontSize: "20px",
+									fontWeight: "normal",
 								}}>
 								“{user.feedback}”
 							</p>

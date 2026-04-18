@@ -15,7 +15,8 @@ function Healthcare() {
 	return (
 		<div
 			style={{
-				background: "linear-gradient(to bottom, #caf0f8, #ade8f4)",
+				// background: "linear-gradient(to bottom, #caf0f8, #ade8f4)",
+				backgroundColor: "#f5f3f4",
 				minHeight: "100vh",
 				fontFamily: "Times New Roman",
 			}}>
@@ -43,15 +44,17 @@ function Healthcare() {
 							<div
 								onClick={() => navigate(`/healthcare/${cat.value}`)}
 								style={{
-									background: "linear-gradient(135deg, #80ced7, #48cae4)",
+									background: "linear-gradient(135deg, #023e8a, #0077b6)",
 									borderRadius: "20px",
 									padding: "50px 20px",
 									textAlign: "center",
 									height: "250px",
 									width: "380px",
 									cursor: "pointer",
+									border: "2px solid white",
 									boxShadow: "0 10px 30px rgba(0,0,0,0.5)",
 									transition: "0.3s",
+									color: "white",
 									position: "relative",
 									overflow: "hidden",
 								}}

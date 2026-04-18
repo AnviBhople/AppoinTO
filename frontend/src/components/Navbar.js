@@ -1,8 +1,9 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Logo from "./images/Logo.png";
 
 function Navbar() {
+	const navigate = useNavigate();
 	const navStyle = {
 		background: "linear-gradient(135deg, #0077b6, #023e8a)",
 		fontFamily: "Times New Roman, serif",
@@ -89,6 +90,7 @@ function Navbar() {
 					<div className="ms-3">
 						<button
 							style={btnStyle}
+							onClick={() => navigate("/account")}
 							onMouseEnter={(e) => {
 								e.currentTarget.style.background = "#90e0ef";
 								e.currentTarget.style.color = "#000";

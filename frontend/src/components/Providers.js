@@ -1,33 +1,26 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
+import { providers as healthcareProviders } from "../data/healthcareProviders";
+import { wellnessProviders } from "../data/wellnessProviders";
+import { counselingProviders } from "../data/counselingProviders";
 
 function Providers() {
+	const navigate = useNavigate();
 	const providers = [
-		{
-			name: "City Hospital",
-			category: "Healthcare",
-			rating: "4.5",
-			distance: "2 km",
-		},
-		{
-			name: "Goodwill Yoga Center",
-			category: "Wellness",
-			rating: "4.7",
-			distance: "1 km",
-		},
-		{
-			name: "JT Therapist",
-			category: "Counseling",
-			rating: "4.8",
-			distance: "3 km",
-		},
-	];
+		healthcareProviders[0],
+		wellnessProviders[0],
+		counselingProviders[0],
+	].filter(Boolean);
 
 	const cardStyle = {
-		background: "linear-gradient(135deg, #80ced7, #48cae4)",
+		background: "linear-gradient(135deg, #023e8a, #0077b6)",
 		borderRadius: "15px",
+		color: "white",
+		border: "1px solid #fff",
+
 		transition: "0.3s",
 		fontFamily: "Times New Roman",
-		boxShadow: "0 10px 25px rgba(0,0,0,0.5)",
+		boxShadow: "0 10px 25px rgba(0,0,0,0.7)",
 	};
 
 	return (
@@ -42,8 +35,14 @@ function Providers() {
 
 			<h4
 				className="mt-2 fw-bold"
-				style={{ color: "#023e8a", fontFamily: "Times New Roman" }}>
-				Discover trusted professionals near your location
+				style={{
+					color: "#023e8a",
+					fontFamily: "Times New Roman",
+					textAlign: "center",
+				}}>
+				Connect with highly trusted and verified professionals near your
+				location, ensuring easy access to quality healthcare, wellness, and
+				counseling services when you need them most.{" "}
 			</h4>
 			<br />
 
@@ -63,8 +62,7 @@ function Providers() {
 								{p.name}
 							</h5>
 
-							<p className="fw-bold">{p.category}</p>
-
+							<p className="fw-bold text-capitalize">{p.category}</p>
 							<p className="fw-bold">
 								⭐ {p.rating} | {p.distance}
 							</p>
@@ -72,12 +70,19 @@ function Providers() {
 							<button
 								className="fw-bold mt-2"
 								style={{
+									backgroundColor: "#ffffff",
+									border: "2px solid #fff",
+									color: "#0a66c2",
+									fontFamily: "Times New Roman",
+									borderRadius: "8px",
+									textAlign: "center",
 									height: "50px",
-									borderRadius: "10px",
-									background: "linear-gradient(135deg, #023e8a, #0077b6)",
-									color: "#fff",
-									border: "none",
-								}}>
+									width: "200px",
+									marginLeft: "10px",
+									fontSize: "x-large",
+									transition: "0.3s",
+								}}
+								onClick={() => navigate(`/book/${p.category}/${p.id}`)}>
 								Book Now
 							</button>
 						</div>

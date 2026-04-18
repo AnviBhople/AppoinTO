@@ -17,7 +17,7 @@ function Wellness() {
 	return (
 		<div
 			style={{
-				background: "linear-gradient(to bottom, #caf0f8, #ade8f4)",
+				backgroundColor: "#f5f3f4,",
 				minHeight: "100vh",
 				fontFamily: "Times New Roman",
 			}}>
@@ -44,14 +44,16 @@ function Wellness() {
 									)
 								}
 								style={{
-									background: "linear-gradient(135deg, #80ced7, #48cae4)",
+									background: "linear-gradient(135deg, #023e8a, #0077b6)",
 									borderRadius: "20px",
+									border: "2px solid white",
 									padding: "50px 20px",
 									textAlign: "center",
 									height: "250px",
 									width: "380px",
 									cursor: "pointer",
-									boxShadow: "0 10px 30px rgba(0,0,0,0.5)",
+									color: "white",
+									boxShadow: "0 10px 30px rgba(0,0,0,0.7)",
 									transition: "0.3s",
 								}}
 								onMouseEnter={(e) => {
