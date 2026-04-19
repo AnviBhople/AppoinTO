@@ -82,7 +82,17 @@ function Providers() {
 									fontSize: "x-large",
 									transition: "0.3s",
 								}}
-								onClick={() => navigate(`/book/${p.category}/${p.id}`)}>
+								onClick={() => {
+									const user = localStorage.getItem("user");
+
+									if (!user) {
+										navigate("/login", {
+											state: { redirectTo: `/book/${p.category}/${p.id}` },
+										});
+									} else {
+										navigate(`/book/${p.category}/${p.id}`);
+									}
+								}}>
 								Book Now
 							</button>
 						</div>

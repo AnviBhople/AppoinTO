@@ -20,6 +20,19 @@ function Account() {
 		setForm({ ...form, [e.target.name]: e.target.value });
 	};
 
+	// const handleSubmit = (e) => {
+	// 	e.preventDefault();
+
+	// 	localStorage.setItem("user", JSON.stringify(form));
+	// 	localStorage.setItem("loggedIn", "true");
+
+	// 	alert("Account created successfully!");
+
+	// 	const redirectPath = location.state?.redirectTo || "/";
+	// 	navigate(redirectPath, {
+	// 		state: location.state,
+	// 	});
+	// };
 	const handleSubmit = (e) => {
 		e.preventDefault();
 
@@ -28,10 +41,17 @@ function Account() {
 
 		alert("Account created successfully!");
 
-		const redirectPath = location.state?.redirectTo || "/";
-		navigate(redirectPath);
-	};
+		// const redirectPath = location.state?.redirectTo || "/";
 
+		// navigate(redirectPath, { state: location.state });
+		const redirectPath = location.state?.redirectTo;
+
+		if (redirectPath) {
+			navigate(redirectPath, { state: location.state }); // booking flow
+		} else {
+			navigate("/dashboard"); // normal signup
+		}
+	};
 	const pageStyle = {
 		minHeight: "100vh",
 		backgroundColor: "#f5f3f4",

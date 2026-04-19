@@ -71,6 +71,7 @@ function Navbar() {
 							{ name: "Counseling", path: "/counseling" },
 							{ name: "About", path: "/about-us" },
 							{ name: "Contact", path: "/contact-us" },
+							{ name: "Dashboard", path: "/dashboard" },
 						].map((item, index) => (
 							<li className="nav-item mx-2" key={index}>
 								<Link

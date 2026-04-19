@@ -14,6 +14,34 @@ function Login() {
 		setForm({ ...form, [e.target.name]: e.target.value });
 	};
 
+	// const handleLogin = (e) => {
+	// 	e.preventDefault();
+
+	// 	const user = JSON.parse(localStorage.getItem("user"));
+
+	// 	if (!user) {
+	// 		alert("No account found. Please create one.");
+	// 		navigate("/account", { state: location.state }); // preserve booking state
+	// 		return;
+	// 	}
+
+	// 	if (form.username === user.username && form.password === user.password) {
+	// 		localStorage.setItem("loggedIn", "true");
+	// 		alert("Login successful!");
+
+	// 		const redirectPath = location.state?.redirectTo || "/";
+
+	// 		// ✅ IMPORTANT: preserve booking state when going back
+	// 		navigate(redirectPath, {
+	// 			state: {
+	// 				pendingBooking: location.state?.pendingBooking,
+	// 				selectedSlot: location.state?.selectedSlot,
+	// 			},
+	// 		});
+	// 	} else {
+	// 		alert("Invalid credentials");
+	// 	}
+	// };
 	const handleLogin = (e) => {
 		e.preventDefault();
 
@@ -21,7 +49,7 @@ function Login() {
 
 		if (!user) {
 			alert("No account found. Please create one.");
-			navigate("/account");
+			navigate("/account", { state: location.state });
 			return;
 		}
 
@@ -29,13 +57,21 @@ function Login() {
 			localStorage.setItem("loggedIn", "true");
 			alert("Login successful!");
 
-			const redirectPath = location.state?.redirectTo || "/";
-			navigate(redirectPath);
+			// const redirectPath = location.state?.redirectTo || "/";
+
+			// // navigate(redirectPath, { state: location.state });
+			const redirectPath = location.state?.redirectTo;
+
+			if (redirectPath) {
+				navigate(redirectPath, { state: location.state }); // booking flow
+			} else {
+				navigate("/dashboard"); // normal login
+			}
+			navigate("/dashboard");
 		} else {
 			alert("Invalid credentials");
 		}
 	};
-
 	const style = {
 		minHeight: "100vh",
 		display: "flex",
@@ -120,6 +156,14 @@ function Login() {
 
 					<button style={buttonStyle}>Login</button>
 				</form>
+				<p style={{ color: "white", textAlign: "center", marginTop: "10px" }}>
+					Don't have an account?{" "}
+					<span
+						style={{ color: "yellow", cursor: "pointer" }}
+						onClick={() => navigate("/account", { state: location.state })}>
+						Create one
+					</span>
+				</p>
 			</div>
 		</div>
 	);

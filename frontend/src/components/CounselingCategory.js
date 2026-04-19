@@ -87,8 +87,9 @@ function CounselingCategory() {
 											const user = localStorage.getItem("user");
 
 											if (!user) {
-												alert("Please login first");
-												navigate("/account");
+												navigate("/login", {
+													state: { redirectTo: `/book/${p.category}/${p.id}` },
+												});
 											} else {
 												navigate(`/book/${p.category}/${p.id}`);
 											}

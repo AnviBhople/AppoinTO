@@ -102,7 +102,17 @@ function WellnessCategory() {
 								<div className="d-flex gap-2 mt-3">
 									<button
 										className="btn btn-dark w-50"
-										onClick={() => navigate(`/book/${p.category}/${p.id}`)}>
+										onClick={() => {
+											const user = localStorage.getItem("user");
+
+											if (!user) {
+												navigate("/login", {
+													state: { redirectTo: `/book/${p.category}/${p.id}` },
+												});
+											} else {
+												navigate(`/book/${p.category}/${p.id}`);
+											}
+										}}>
 										Book Now
 									</button>
 

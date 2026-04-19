@@ -16,6 +16,7 @@ import Booking from "./components/Booking";
 import Account from "./components/Account";
 import Login from "./components/Login";
 import ProtectedRoute from "./components/ProtectedRoute";
+import Dashboard from "./components/Dashboard";
 
 function App() {
 	return (
@@ -36,7 +37,6 @@ function App() {
 				<Route path="/wellness/:category" element={<WellnessCategory />} />
 				<Route path="/counseling" element={<Counseling />} />
 				<Route path="/counseling/:category" element={<CounselingCategory />} />
-				{/* <Route path="/book/:category/:id" element={<Booking />} /> */}
 				<Route
 					path="/book/:category/:id"
 					element={
@@ -45,6 +45,7 @@ function App() {
 						</ProtectedRoute>
 					}
 				/>
+				<Route path="/dashboard" element={<Dashboard />} />
 			</Routes>
 			<Footer />
 		</>
