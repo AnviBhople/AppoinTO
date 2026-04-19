@@ -1,6 +1,10 @@
 import axios from "axios";
 
-const API = axios.create({ baseURL: "http://localhost:5000/api" });
+const RENDER_URL = "https://appointo-backend-api.onrender.com/api";
+
+const API = axios.create({ baseURL: RENDER_URL });
 
 export const fetchProviders = (category) => API.get(`/providers/${category}`);
 export const fetchProviderById = (id) => API.get(`/providers/details/${id}`);
+
+export default API;

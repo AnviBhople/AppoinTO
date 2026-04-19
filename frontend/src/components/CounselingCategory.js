@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
+import API from "../api";
 
 function CounselingCategory() {
 	const { category } = useParams();
@@ -18,9 +19,7 @@ function CounselingCategory() {
 		const fetchProviders = async () => {
 			try {
 				setLoading(true);
-				const res = await axios.get(
-					`http://localhost:5000/api/providers/counseling`,
-				);
+				const res = await API.get(`/providers/counseling`);
 				setProviders(res.data);
 				setLoading(false);
 			} catch (err) {

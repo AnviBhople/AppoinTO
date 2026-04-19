@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useLocation, useNavigate } from "react-router-dom";
-import axios from "axios";
+import API from "../api";
 
 function WellnessCategory() {
 	const { category } = useParams();
@@ -16,9 +16,7 @@ function WellnessCategory() {
 	useEffect(() => {
 		const fetchProviders = async () => {
 			try {
-				const res = await axios.get(
-					`http://localhost:5000/api/providers/wellness`,
-				);
+				const res = await API.get(`/providers/wellness`);
 				setProviders(res.data);
 				setLoading(false);
 			} catch (err) {

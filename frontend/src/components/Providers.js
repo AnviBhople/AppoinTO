@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import API from "../api";
 
 function Providers() {
 	const navigate = useNavigate();
@@ -9,15 +9,9 @@ function Providers() {
 	useEffect(() => {
 		const fetchSamples = async () => {
 			try {
-				const hRes = await axios.get(
-					"http://localhost:5000/api/providers/healthcare",
-				);
-				const wRes = await axios.get(
-					"http://localhost:5000/api/providers/wellness",
-				);
-				const cRes = await axios.get(
-					"http://localhost:5000/api/providers/counseling",
-				);
+				const hRes = await API.get("/providers/healthcare");
+				const wRes = await API.get("/providers/wellness");
+				const cRes = await API.get("/providers/counseling");
 
 				const samples = [hRes.data[0], wRes.data[0], cRes.data[0]].filter(
 					Boolean,

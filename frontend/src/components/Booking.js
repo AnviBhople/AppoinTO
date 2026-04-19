@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
+import API from "../api";
 
 function Booking() {
 	const { category, id } = useParams();
@@ -19,9 +20,7 @@ function Booking() {
 
 			try {
 				setLoading(true);
-				const response = await axios.get(
-					`http://localhost:5000/api/providers/details/${id}`,
-				);
+				const response = await API.get(`/providers/healthcare`);
 				setProvider(response.data);
 				setLoading(false);
 			} catch (error) {
