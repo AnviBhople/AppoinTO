@@ -8,7 +8,6 @@ function Home() {
 	return (
 		<div
 			style={{
-				// backgroundColor: "#caf0f8",
 				backgroundColor: "#f5f3f4",
 			}}>
 			<Hero />

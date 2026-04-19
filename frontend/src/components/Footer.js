@@ -53,7 +53,6 @@ function Footer() {
 
 				<p>© 2026 AppoinTO</p>
 
-				{/* MODAL */}
 				<SocialModal
 					show={modalOpen}
 					platform={platform}

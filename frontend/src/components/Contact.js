@@ -53,18 +53,14 @@ function Contact() {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 
-		// show alert with user data
 		alert(
 			`Thank you ${formData.name}!\n\nYour message has been received:\n"${formData.message}"`,
 		);
 
-		// simulate backend
 		console.log("User Message:", formData);
 
-		// show success message
 		setSubmitted(true);
 
-		// clear form
 		setFormData({
 			name: "",
 			email: "",
@@ -86,7 +82,6 @@ function Contact() {
 				</div>
 
 				<div className="row g-4">
-					{/* FORM SIDE */}
 					<div className="col-md-6">
 						<div
 							style={cardStyle}
@@ -101,7 +96,6 @@ function Contact() {
 
 							<br />
 
-							{/* SUCCESS MESSAGE */}
 							{submitted && (
 								<div className="alert alert-success text-center fw-bold">
 									Message sent successfully!
@@ -161,7 +155,6 @@ function Contact() {
 						</div>
 					</div>
 
-					{/* INFO SIDE */}
 					<div className="col-md-5 gap-2">
 						<div
 							style={cardStyle}
@@ -190,7 +183,6 @@ function Contact() {
 					</div>
 				</div>
 
-				{/* BOTTOM */}
 				<div className="text-center mt-5">
 					<h3 className="fw-bold" style={{ color: "#023e8a" }}>
 						We Value Your Feedback

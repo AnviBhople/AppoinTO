@@ -1,23 +1,40 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { providers as healthcareProviders } from "../data/healthcareProviders";
-import { wellnessProviders } from "../data/wellnessProviders";
-import { counselingProviders } from "../data/counselingProviders";
+import axios from "axios";
 
 function Providers() {
 	const navigate = useNavigate();
-	const providers = [
-		healthcareProviders[0],
-		wellnessProviders[0],
-		counselingProviders[0],
-	].filter(Boolean);
+	const [displayProviders, setDisplayProviders] = useState([]);
+
+	useEffect(() => {
+		const fetchSamples = async () => {
+			try {
+				const hRes = await axios.get(
+					"http://localhost:5000/api/providers/healthcare",
+				);
+				const wRes = await axios.get(
+					"http://localhost:5000/api/providers/wellness",
+				);
+				const cRes = await axios.get(
+					"http://localhost:5000/api/providers/counseling",
+				);
+
+				const samples = [hRes.data[0], wRes.data[0], cRes.data[0]].filter(
+					Boolean,
+				);
+				setDisplayProviders(samples);
+			} catch (err) {
+				console.error("Error fetching sample providers:", err);
+			}
+		};
+		fetchSamples();
+	}, []);
 
 	const cardStyle = {
 		background: "linear-gradient(135deg, #023e8a, #0077b6)",
 		borderRadius: "15px",
 		color: "white",
 		border: "1px solid #fff",
-
 		transition: "0.3s",
 		fontFamily: "Times New Roman",
 		boxShadow: "0 10px 25px rgba(0,0,0,0.7)",
@@ -25,30 +42,21 @@ function Providers() {
 
 	return (
 		<div className="container my-5 text-center">
-			<br />
-			<br />
 			<h2
 				className="fw-bold display-6"
 				style={{ fontFamily: "Times New Roman" }}>
 				Nearby Providers
 			</h2>
-
 			<h4
 				className="mt-2 fw-bold"
-				style={{
-					color: "#023e8a",
-					fontFamily: "Times New Roman",
-					textAlign: "center",
-				}}>
+				style={{ color: "#023e8a", fontFamily: "Times New Roman" }}>
 				Connect with highly trusted and verified professionals near your
-				location, ensuring easy access to quality healthcare, wellness, and
-				counseling services when you need them most.{" "}
+				location.
 			</h4>
-			<br />
 
 			<div className="row mt-4">
-				{providers.map((p, index) => (
-					<div className="col-md-4" key={index}>
+				{displayProviders.map((p, index) => (
+					<div className="col-md-4" key={p._id || index}>
 						<div
 							className="card p-4 h-100 text-start"
 							style={cardStyle}
@@ -61,10 +69,9 @@ function Providers() {
 							<h5 className="fw-bold" style={{ fontSize: "28px" }}>
 								{p.name}
 							</h5>
-
 							<p className="fw-bold text-capitalize">{p.category}</p>
 							<p className="fw-bold">
-								⭐ {p.rating} | {p.distance}
+								⭐ {p.rating} | {p.city || "Nearby"}
 							</p>
 
 							<button
@@ -75,23 +82,13 @@ function Providers() {
 									color: "#0a66c2",
 									fontFamily: "Times New Roman",
 									borderRadius: "8px",
-									textAlign: "center",
 									height: "50px",
 									width: "200px",
-									marginLeft: "10px",
-									fontSize: "x-large",
-									transition: "0.3s",
+									fontSize: "large",
 								}}
 								onClick={() => {
-									const user = localStorage.getItem("user");
-
-									if (!user) {
-										navigate("/login", {
-											state: { redirectTo: `/book/${p.category}/${p.id}` },
-										});
-									} else {
-										navigate(`/book/${p.category}/${p.id}`);
-									}
+									const targetId = p.id || p._id;
+									navigate(`/book/${p.category}/${targetId}`);
 								}}>
 								Book Now
 							</button>

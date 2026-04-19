@@ -22,7 +22,6 @@ function Navbar() {
 		border: "2px solid #0077b6",
 		background: "#fff",
 		color: "#023e8a",
-		// border: "none",
 		padding: "8px 20px",
 		fontSize: "22px",
 		fontWeight: "bold",

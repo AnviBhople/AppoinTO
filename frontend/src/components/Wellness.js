@@ -22,7 +22,6 @@ function Wellness() {
 				fontFamily: "Times New Roman",
 			}}>
 			<div className="container py-5">
-				{/* HEADER */}
 				<div className="text-center mb-5">
 					<h1 className="fw-bold display-5">
 						Explore <span style={{ color: "#023e8a" }}>Wellness Services</span>
@@ -33,7 +32,6 @@ function Wellness() {
 					)}
 				</div>
 
-				{/* CATEGORY CARDS */}
 				<div className="row g-4">
 					{categories.map((cat, index) => (
 						<div className="col-md-4" key={index}>
@@ -65,7 +63,7 @@ function Wellness() {
 								}}>
 								<div style={{ fontSize: "60px" }}>{cat.icon}</div>
 								<h3 className="fw-bold mt-3">{cat.name}</h3>
-								<p className="fw-bold mt-2" style={{ fontSize: "20px" }}>
+								<p className="fw-bold mt-2" style={{ fontSize: "17px" }}>
 									Click to explore →
 								</p>
 							</div>

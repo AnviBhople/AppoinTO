@@ -1,37 +1,69 @@
-import React from "react";
-import { useParams, useLocation } from "react-router-dom";
-import { counselingProviders } from "../data/counselingProviders";
-import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useParams, useLocation, useNavigate } from "react-router-dom";
+import axios from "axios";
+
 function CounselingCategory() {
 	const { category } = useParams();
-	const navigate = useNavigate();
 	const location = useLocation();
+	const navigate = useNavigate();
+
+	const [providers, setProviders] = useState([]);
+	const [loading, setLoading] = useState(true);
+	const [error, setError] = useState(null);
+
 	const queryParams = new URLSearchParams(location.search);
 	const userLocation = queryParams.get("location");
 
-	// FILTER LOGIC
-	const filtered = counselingProviders.filter((p) => {
-		const matchCategory = p.category === category;
+	useEffect(() => {
+		const fetchProviders = async () => {
+			try {
+				setLoading(true);
+				const res = await axios.get(
+					`http://localhost:5000/api/providers/counseling`,
+				);
+				setProviders(res.data);
+				setLoading(false);
+			} catch (err) {
+				console.error("Fetch Error:", err);
+				setError("Unable to connect to the counseling database.");
+				setLoading(false);
+			}
+		};
+		fetchProviders();
+	}, []);
 
-		if (!userLocation || userLocation.trim() === "") {
-			return matchCategory;
-		}
+	const typeMatches = providers.filter((p) => {
+		if (category.toLowerCase() === "all") return true;
 
-		const locationLower = userLocation.toLowerCase();
-
-		const matchLocation =
-			p.address.toLowerCase().includes(locationLower) ||
-			locationLower.includes("pune");
-
-		return matchCategory && matchLocation;
+		return p.type && p.type.toLowerCase() === category.toLowerCase();
 	});
 
-	// FALLBACK
-	const finalData =
-		filtered.length > 0
-			? filtered
-			: counselingProviders.filter((p) => p.category === category);
+	const filteredByLocation = typeMatches.filter((p) => {
+		if (!userLocation || userLocation.trim() === "") {
+			return true;
+		}
+		const addressMatch =
+			p.address && p.address.toLowerCase().includes(userLocation.toLowerCase());
+		const cityMatch =
+			p.city && p.city.toLowerCase().includes(userLocation.toLowerCase());
+		return addressMatch || cityMatch;
+	});
+
+	const finalDisplayData =
+		filteredByLocation.length > 0 ? filteredByLocation : typeMatches;
+
+	if (loading)
+		return (
+			<div className="text-center mt-5">
+				<h3>Finding Counselors...</h3>
+			</div>
+		);
+	if (error)
+		return (
+			<div className="text-center mt-5 text-danger">
+				<h3>{error}</h3>
+			</div>
+		);
 
 	return (
 		<div
@@ -46,85 +78,47 @@ function CounselingCategory() {
 					<h1 className="fw-bold display-5">
 						{category.toUpperCase()} Counseling
 					</h1>
-
 					<h3 className="fw-bold" style={{ color: "#023e8a" }}>
-						FIND TRUSTED COUNSELORS NEAR YOU
+						A Safe Space for Healing
 					</h3>
-
-					{userLocation && (
-						<p className="fw-bold text-primary">Location: {userLocation}</p>
-					)}
 				</div>
 
 				<div className="row g-4">
-					{finalData.map((p) => (
-						<div className="col-md-4" key={p.id}>
-							<div
-								style={{
-									background: "linear-gradient(135deg, #023e8a, #0077b6)",
-									borderRadius: "10px",
-									border: "2px solid white",
-									color: "#fff",
-									padding: "20px",
-									boxShadow: "0 10px 25px rgba(0,0,0,0.5)",
-									transition: "0.3s",
-								}}
-								onMouseEnter={(e) =>
-									(e.currentTarget.style.transform =
-										"scale(1.05) translateY(-8px)")
-								}
-								onMouseLeave={(e) =>
-									(e.currentTarget.style.transform = "scale(1) translateY(0)")
-								}>
-								<h4 className="fw-bold">{p.name}</h4>
-								<p className="fw-bold">{p.address}</p>
-								<p className="fw-bold">⭐ {p.rating}</p>
+					{finalDisplayData.length > 0 ? (
+						finalDisplayData.map((p) => (
+							<div className="col-md-4" key={p._id}>
+								<div
+									style={{
+										background: "linear-gradient(135deg, #023e8a, #0077b6)",
+										borderRadius: "15px",
+										padding: "20px",
+										color: "white",
+										boxShadow: "0 10px 20px rgba(0,0,0,0.2)",
+									}}>
+									<h4 className="fw-bold">{p.name}</h4>
+									<p className="mb-1">📍 {p.address}</p>
+									<p className="mb-1">⭐ {p.rating}</p>
 
-								<div className="d-flex gap-2 mt-3">
 									<button
-										className="btn btn-dark w-50"
+										className="btn btn-dark w-100 mt-3 fw-bold"
 										onClick={() => {
-											const user = localStorage.getItem("user");
-
-											if (!user) {
-												navigate("/login", {
-													state: { redirectTo: `/book/${p.category}/${p.id}` },
-												});
-											} else {
-												navigate(`/book/${p.category}/${p.id}`);
-											}
+											const providerId = p.id || p._id;
+											navigate(`/book/${p.category}/${providerId}`);
 										}}>
-										Book Now
+										Book Appointment
 									</button>
-
-									<Link
-										to={`https://www.google.com/maps/search/?api=1&query=${p.name}+${p.address}`}
-										target="_blank"
-										rel="noreferrer"
-										className="btn w-50 fw-bold"
-										style={{
-											backgroundColor: "#ffffff",
-											border: "1px solid #0a66c2",
-											color: "#0a66c2",
-											fontFamily: "Times New Roman",
-											borderRadius: "8px",
-											textAlign: "center",
-											transition: "0.3s",
-										}}
-										onMouseEnter={(e) => {
-											e.currentTarget.style.backgroundColor = "#0a66c2";
-											e.currentTarget.style.color = "#ffffff";
-										}}
-										onMouseLeave={(e) => {
-											e.currentTarget.style.backgroundColor = "#ffffff";
-											e.currentTarget.style.color = "#0a66c2";
-										}}>
-										View Map
-									</Link>
 								</div>
 							</div>
+						))
+					) : (
+						<div className="text-center mt-5">
+							<h3>No {category} experts found.</h3>
+							<p className="text-muted">
+								Tip: Ensure MongoDB documents have category: "counselling" and
+								type: "{category}"
+							</p>
 						</div>
-					))}
+					)}
 				</div>
 			</div>
 		</div>

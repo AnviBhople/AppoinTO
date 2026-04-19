@@ -20,36 +20,24 @@ function Account() {
 		setForm({ ...form, [e.target.name]: e.target.value });
 	};
 
-	// const handleSubmit = (e) => {
-	// 	e.preventDefault();
-
-	// 	localStorage.setItem("user", JSON.stringify(form));
-	// 	localStorage.setItem("loggedIn", "true");
-
-	// 	alert("Account created successfully!");
-
-	// 	const redirectPath = location.state?.redirectTo || "/";
-	// 	navigate(redirectPath, {
-	// 		state: location.state,
-	// 	});
-	// };
 	const handleSubmit = (e) => {
 		e.preventDefault();
+
+		const existingUsers = JSON.parse(localStorage.getItem("usersArray")) || [];
+
+		existingUsers.push(form);
+		localStorage.setItem("usersArray", JSON.stringify(existingUsers));
 
 		localStorage.setItem("user", JSON.stringify(form));
 		localStorage.setItem("loggedIn", "true");
 
 		alert("Account created successfully!");
 
-		// const redirectPath = location.state?.redirectTo || "/";
-
-		// navigate(redirectPath, { state: location.state });
 		const redirectPath = location.state?.redirectTo;
-
 		if (redirectPath) {
-			navigate(redirectPath, { state: location.state }); // booking flow
+			navigate(redirectPath, { state: location.state });
 		} else {
-			navigate("/dashboard"); // normal signup
+			navigate("/dashboard");
 		}
 	};
 	const pageStyle = {
@@ -62,7 +50,6 @@ function Account() {
 		padding: "20px",
 	};
 
-	// 🧊 Glass Card
 	const cardStyle = {
 		width: "600px",
 		padding: "30px",
@@ -99,7 +86,6 @@ function Account() {
 		width: "300px",
 		padding: "12px",
 		marginTop: "10px",
-		// background: "linear-gradient(135deg, #0077b6, #023e8a)",
 		backgroundColor: "#fff",
 		border: "none",
 		borderRadius: "12px",
@@ -128,7 +114,6 @@ function Account() {
 				<br />
 				<br />
 				<form onSubmit={handleSubmit}>
-					{/* LOGIN INFO */}
 					<div style={sectionTitle}>Login Details</div>
 					<input
 						name="username"
@@ -147,7 +132,6 @@ function Account() {
 					/>
 					<br />
 					<br />
-					{/* PERSONAL INFO */}
 					<div style={sectionTitle}> Personal Information</div>
 					<input
 						name="name"
@@ -184,7 +168,6 @@ function Account() {
 					/>
 					<br />
 					<br />
-					{/* MEDICAL INFO */}
 					<div style={sectionTitle}> Medical Information</div>
 					<input
 						name="bloodGroup"

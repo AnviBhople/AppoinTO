@@ -17,6 +17,8 @@ import Account from "./components/Account";
 import Login from "./components/Login";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Dashboard from "./components/Dashboard";
+import AIAssessment from "./components/AIAssessment";
+import AIChatBot from "./components/AIChatBot";
 
 function App() {
 	return (
@@ -46,7 +48,9 @@ function App() {
 					}
 				/>
 				<Route path="/dashboard" element={<Dashboard />} />
+				<Route path="/ai-assessment" element={<AIAssessment />} />
 			</Routes>
+			<AIChatBot />
 			<Footer />
 		</>
 	);

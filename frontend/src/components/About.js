@@ -13,7 +13,6 @@ function About() {
 	};
 
 	const sectionStyle = {
-		// background: "rgba(255,255,255,0.6)",
 		backgroundColor: "#e2ece9",
 		padding: "30px",
 		borderRadius: "15px",
@@ -25,7 +24,6 @@ function About() {
 	};
 
 	const cardStyle = {
-		// background: "linear-gradient(135deg, #80ced7, #48cae4)",
 		backgroundColor: "#90e0ef",
 		borderRadius: "15px",
 		padding: "30px",
@@ -37,7 +35,6 @@ function About() {
 	return (
 		<div style={mainStyle} className="py-5">
 			<div className="container">
-				{/* HEADER */}
 				<div className="text-center mb-5">
 					<h1 className="fw-bold display-4">
 						About <span style={accentStyle}>AppoinTO</span>
@@ -49,7 +46,6 @@ function About() {
 					</p>
 				</div>
 
-				{/* WHO WE ARE */}
 				<div
 					style={sectionStyle}
 					onMouseEnter={(e) =>
@@ -73,7 +69,6 @@ function About() {
 					</p>
 				</div>
 
-				{/* MISSION */}
 				<div
 					style={sectionStyle}
 					onMouseEnter={(e) =>
@@ -91,7 +86,6 @@ function About() {
 					</p>
 				</div>
 
-				{/* STATS */}
 				<div className="row text-center mb-5 g-4">
 					<div className="col-md-4">
 						<div
@@ -142,7 +136,6 @@ function About() {
 					</div>
 				</div>
 
-				{/* WHY EXISTS */}
 				<div
 					style={sectionStyle}
 					onMouseEnter={(e) =>
@@ -161,7 +154,6 @@ function About() {
 					</p>
 				</div>
 
-				{/* FINAL */}
 				<div className="text-center mt-5">
 					<h2 style={accentStyle}>Built with Care</h2>
 

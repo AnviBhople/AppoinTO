@@ -6,7 +6,6 @@ function HomeInfoSection() {
 	const sectionStyle = {
 		fontFamily: "Times New Roman",
 		textAlign: "center",
-		// backgroundColor: "#caf0f8",
 		backgroundColor: "#f5f3f4",
 		minHeight: "100vh",
 		paddingTop: "40px",
@@ -40,9 +39,7 @@ function HomeInfoSection() {
 	return (
 		<div style={sectionStyle}>
 			<div className="container">
-				{/* ================= WHO WE ARE ================= */}
 				<div className="row align-items-center mb-5">
-					{/* TEXT LEFT */}
 					<div className="col-md-6">
 						<h2 style={titleStyle}>Who We Are</h2>
 						<br />
@@ -69,7 +66,6 @@ function HomeInfoSection() {
 						</p>
 					</div>
 
-					{/* IMAGE RIGHT */}
 					<div className="col-md-6 text-center">
 						<img src={whoweare} alt="Who We Are" style={imageStyle} />
 					</div>
@@ -77,14 +73,11 @@ function HomeInfoSection() {
 				<br />
 				<br />
 				<br />
-				{/* ================= WHY CHOOSE US ================= */}
 				<div className="row align-items-center">
-					{/* IMAGE LEFT */}
 					<div className="col-md-6 text-center order-md-1 order-2">
 						<img src={whychoseus} alt="Why Choose Us" style={imageStyle} />
 					</div>
 
-					{/* TEXT RIGHT */}
 					<div className="col-md-6 order-md-2 order-1">
 						<h2 style={titleStyle}>Why Choose Us</h2>
 						<br />{" "}

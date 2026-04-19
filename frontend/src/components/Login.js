@@ -14,62 +14,28 @@ function Login() {
 		setForm({ ...form, [e.target.name]: e.target.value });
 	};
 
-	// const handleLogin = (e) => {
-	// 	e.preventDefault();
-
-	// 	const user = JSON.parse(localStorage.getItem("user"));
-
-	// 	if (!user) {
-	// 		alert("No account found. Please create one.");
-	// 		navigate("/account", { state: location.state }); // preserve booking state
-	// 		return;
-	// 	}
-
-	// 	if (form.username === user.username && form.password === user.password) {
-	// 		localStorage.setItem("loggedIn", "true");
-	// 		alert("Login successful!");
-
-	// 		const redirectPath = location.state?.redirectTo || "/";
-
-	// 		// ✅ IMPORTANT: preserve booking state when going back
-	// 		navigate(redirectPath, {
-	// 			state: {
-	// 				pendingBooking: location.state?.pendingBooking,
-	// 				selectedSlot: location.state?.selectedSlot,
-	// 			},
-	// 		});
-	// 	} else {
-	// 		alert("Invalid credentials");
-	// 	}
-	// };
 	const handleLogin = (e) => {
 		e.preventDefault();
 
-		const user = JSON.parse(localStorage.getItem("user"));
+		const users = JSON.parse(localStorage.getItem("usersArray")) || [];
 
-		if (!user) {
-			alert("No account found. Please create one.");
-			navigate("/account", { state: location.state });
-			return;
-		}
+		const foundUser = users.find(
+			(u) => u.username === form.username && u.password === form.password,
+		);
 
-		if (form.username === user.username && form.password === user.password) {
+		if (foundUser) {
+			localStorage.setItem("user", JSON.stringify(foundUser));
 			localStorage.setItem("loggedIn", "true");
 			alert("Login successful!");
 
-			// const redirectPath = location.state?.redirectTo || "/";
-
-			// // navigate(redirectPath, { state: location.state });
 			const redirectPath = location.state?.redirectTo;
-
 			if (redirectPath) {
-				navigate(redirectPath, { state: location.state }); // booking flow
+				navigate(redirectPath, { state: location.state });
 			} else {
-				navigate("/dashboard"); // normal login
+				navigate("/dashboard");
 			}
-			navigate("/dashboard");
 		} else {
-			alert("Invalid credentials");
+			alert("Invalid credentials or Account does not exist!");
 		}
 	};
 	const style = {
@@ -108,7 +74,6 @@ function Login() {
 		width: "200px",
 		padding: "12px",
 		marginTop: "10px",
-		// background: "linear-gradient(135deg, #0077b6, #023e8a)",
 		backgroundColor: "#fff",
 		border: "none",
 		borderRadius: "12px",

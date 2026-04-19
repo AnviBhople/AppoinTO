@@ -1,6 +1,5 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-
 import healthcareImg from "./images/healthcare.png";
 import wellnessImg from "./images/wellness.png";
 import counselingImg from "./images/counseling.png";
@@ -11,7 +10,6 @@ function Categories() {
 	const sectionStyle = {
 		fontFamily: "Times New Roman",
 		textAlign: "center",
-		// backgroundColor: "#caf0f8",
 		backgroundColor: "#f5f3f4",
 		minHeight: "100vh",
 		paddingTop: "40px",
@@ -20,7 +18,6 @@ function Categories() {
 
 	const cardStyle = {
 		background: "linear-gradient(135deg, #023e8a, #0077b6)",
-
 		borderRadius: "18px",
 		transition: "0.3s ease",
 		boxShadow: "0 12px 25px rgba(0,0,0.7)",
@@ -33,7 +30,7 @@ function Categories() {
 		justifyContent: "flex-start",
 		padding: "20px",
 		cursor: "pointer",
-		color: "#fff", // makes text readable on dark blue
+		color: "#fff",
 	};
 
 	const imageStyle = {
@@ -116,24 +113,20 @@ function Categories() {
 							onMouseLeave={(e) =>
 								(e.currentTarget.style.transform = "translateY(0)")
 							}>
-							{/* IMAGE */}
 							<img src={cat.img} alt={cat.name} style={imageStyle} />
 
-							{/* TITLE (CLICKABLE TOO) */}
 							<h5
 								className="fw-bold"
 								style={{ fontSize: "26px", cursor: "pointer" }}
 								onClick={(e) => {
-									e.stopPropagation(); // prevents double trigger
+									e.stopPropagation();
 									navigate(cat.path);
 								}}>
 								{cat.name}
 							</h5>
 
-							{/* DESCRIPTION */}
 							<p style={descStyle}>{cat.desc}</p>
 
-							{/* ABOUT TEXT */}
 							<p style={aboutStyle}>{cat.about}</p>
 							<br />
 						</div>

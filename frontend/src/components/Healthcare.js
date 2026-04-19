@@ -15,13 +15,11 @@ function Healthcare() {
 	return (
 		<div
 			style={{
-				// background: "linear-gradient(to bottom, #caf0f8, #ade8f4)",
 				backgroundColor: "#f5f3f4",
 				minHeight: "100vh",
 				fontFamily: "Times New Roman",
 			}}>
 			<div className="container py-5">
-				{/* HEADER */}
 				<div className="text-center mb-5">
 					<h1 className="fw-bold display-5">
 						Find <span style={{ color: "#023e8a" }}>Healthcare Services</span>
@@ -37,7 +35,6 @@ function Healthcare() {
 					</p>
 				</div>
 
-				{/* CATEGORY CARDS */}
 				<div className="row g-4">
 					{categories.map((cat, index) => (
 						<div className="col-md-4" key={index}>
@@ -65,13 +62,10 @@ function Healthcare() {
 								onMouseLeave={(e) => {
 									e.currentTarget.style.transform = "scale(1) translateY(0)";
 								}}>
-								{/* ICON */}
 								<div style={{ fontSize: "60px" }}>{cat.icon}</div>
 
-								{/* TITLE */}
 								<h3 className="fw-bold mt-3">{cat.name}</h3>
 
-								{/* SUBTEXT */}
 								<p
 									style={{
 										fontWeight: "bold",
