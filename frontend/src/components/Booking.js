@@ -19,7 +19,8 @@ function Booking() {
 
 			try {
 				setLoading(true);
-				const response = await API.get(`/providers/healthcare`);
+				const response = await API.get(`/providers/details/${id}`);
+
 				setProvider(response.data);
 				setLoading(false);
 			} catch (error) {
@@ -29,7 +30,6 @@ function Booking() {
 		};
 		fetchProvider();
 	}, [id]);
-
 	const handleBooking = () => {
 		if (!selectedSlot) return alert("Please select a time slot");
 
