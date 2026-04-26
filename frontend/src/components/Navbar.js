@@ -35,7 +35,7 @@ function Navbar() {
 					<img
 						src={Logo}
 						alt="Logo"
-						width="150"
+						width="150px"
 						height="100"
 						className="me-2"
 						style={{ borderRadius: "10px", objectFit: "cover" }}
