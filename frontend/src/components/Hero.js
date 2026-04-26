@@ -151,11 +151,11 @@ function Hero() {
 							onChange={(e) => setLocation(e.target.value)}
 						/>
 						<datalist id="city-options">
-							<option value="Delhi" />
-							<option value="Mumbai" />
-							<option value="Pune" />
-							<option value="Amravati" />
-							<option value="Nagpur" />
+							<option value="Delhi">Delhi</option>
+							<option value="Mumbai">Mumbai</option>
+							<option value="Pune">Pune</option>
+							<option value="Amravati">Amravati</option>
+							<option value="Nagpur">Nagpur</option>
 						</datalist>
 						<select
 							className="form-select shadow"

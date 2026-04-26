@@ -96,7 +96,13 @@ function Booking() {
 		boxShadow: "0 10px 30px rgba(0,0,0,0.7)",
 		color: "white",
 	};
-
+	const btnStyle = {
+		backgroundColor: "#ef233c",
+		color: "white",
+		border: "1px solid white",
+		boxShadow: "0 15px 35px rgba(0,0,0,0.7)",
+		fontSize: "x-large",
+	};
 	return (
 		<div
 			style={{
@@ -143,11 +149,15 @@ function Booking() {
 								))}
 							</div>
 						</div>
-						<button
-							className="btn btn-dark fw-bold w-100 mt-4 p-3"
-							onClick={handleBooking}>
-							Confirm Booking
-						</button>
+						<br />
+						<div className="d-flex justify-content-center">
+							<button
+								className="btn fw-bold w-50 mt-2 p-2"
+								onClick={handleBooking}
+								style={btnStyle}>
+								Confirm Booking
+							</button>
+						</div>
 					</div>
 				</div>
 			</div>

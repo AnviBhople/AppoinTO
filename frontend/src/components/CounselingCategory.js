@@ -27,6 +27,7 @@ function CounselingCategory() {
 				setLoading(false);
 			}
 		};
+
 		fetchProviders();
 	}, []);
 

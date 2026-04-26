@@ -24,17 +24,32 @@ function WellnessCategory() {
 				setLoading(false);
 			}
 		};
+
 		fetchProviders();
 	}, []);
 
+	// const filteredData = providers.filter((p) => {
+	// 	const matchesType =
+	// 		p.type && p.type.toLowerCase() === category.toLowerCase();
+	// 	if (!userLocation) return matchesType;
+	// 	return (
+	// 		matchesType &&
+	// 		p.address.toLowerCase().includes(userLocation.toLowerCase())
+	// 	);
+	// });
 	const filteredData = providers.filter((p) => {
 		const matchesType =
 			p.type && p.type.toLowerCase() === category.toLowerCase();
+
 		if (!userLocation) return matchesType;
-		return (
-			matchesType &&
-			p.address.toLowerCase().includes(userLocation.toLowerCase())
-		);
+
+		// We check BOTH the address and the city field to be safe
+		const searchLocation = userLocation.toLowerCase();
+		const addressMatch =
+			p.address && p.address.toLowerCase().includes(searchLocation);
+		const cityMatch = p.city && p.city.toLowerCase().includes(searchLocation);
+
+		return matchesType && (addressMatch || cityMatch);
 	});
 
 	if (loading)
