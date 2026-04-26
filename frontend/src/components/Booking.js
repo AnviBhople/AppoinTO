@@ -3,6 +3,12 @@ import { useParams, useNavigate } from "react-router-dom";
 import API from "../api";
 
 function Booking() {
+	const slotTimings = {
+		Morning: "10:00 AM - 12:00 PM",
+		Afternoon: "01:00 PM - 03:00 PM",
+		Evening: "05:00 PM - 07:00 PM",
+		Night: "08:00 PM - 10:00 PM",
+	};
 	const { category, id } = useParams();
 	const navigate = useNavigate();
 
@@ -43,7 +49,9 @@ function Booking() {
 				providerName: provider.name,
 				category: category,
 				address: provider.address,
+
 				slot: selectedSlot,
+				time: slotTimings[selectedSlot],
 				userEmail: storedUser.email,
 				date: new Date().toLocaleDateString(),
 			};
@@ -111,12 +119,13 @@ function Booking() {
 						<div className="mt-4 text-center">
 							<h4>Select Time Slot</h4>
 							<div className="d-flex flex-wrap justify-content-center gap-2 mt-2">
-								{["Morning", "Afternoon", "Evening", "Night"].map((slot) => (
+								{Object.keys(slotTimings).map((slot) => (
 									<button
 										key={slot}
 										onClick={() => setSelectedSlot(slot)}
 										style={{
 											padding: "10px",
+											minWidth: "140px",
 											borderRadius: "8px",
 											border:
 												selectedSlot === slot
@@ -126,7 +135,10 @@ function Booking() {
 												selectedSlot === slot ? "#0077b6" : "#ffffff",
 											color: selectedSlot === slot ? "white" : "black",
 										}}>
-										{slot}
+										<div className="fw-bold">{slot}</div>
+										<div style={{ fontSize: "12px", opacity: 0.9 }}>
+											{slotTimings[slot]}
+										</div>
 									</button>
 								))}
 							</div>

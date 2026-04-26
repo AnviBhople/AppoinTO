@@ -1,9 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 
 function Login() {
 	const navigate = useNavigate();
 	const location = useLocation();
+
+	const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+	useEffect(() => {
+		const handleResize = () => setIsMobile(window.innerWidth < 768);
+		window.addEventListener("resize", handleResize);
+		return () => window.removeEventListener("resize", handleResize);
+	}, []);
 
 	const [form, setForm] = useState({
 		username: "",
@@ -16,9 +23,7 @@ function Login() {
 
 	const handleLogin = (e) => {
 		e.preventDefault();
-
 		const users = JSON.parse(localStorage.getItem("usersArray")) || [];
-
 		const foundUser = users.find(
 			(u) => u.username === form.username && u.password === form.password,
 		);
@@ -38,6 +43,7 @@ function Login() {
 			alert("Invalid credentials or Account does not exist!");
 		}
 	};
+
 	const style = {
 		minHeight: "100vh",
 		display: "flex",
@@ -45,22 +51,29 @@ function Login() {
 		alignItems: "center",
 		backgroundColor: "#f5f3f4",
 		fontFamily: "Times New Roman",
+		padding: "20px",
 	};
 
 	const card = {
-		padding: "30px",
-		height: "500px",
+		padding: isMobile ? "20px" : "40px",
+		height: "auto",
+		minHeight: "450px",
 		borderRadius: "15px",
 		background: "linear-gradient(135deg, #0077b6, #023e8a)",
-		width: "400px",
+		width: "100%",
+		maxWidth: "400px",
 		backdropFilter: "blur(12px)",
 		boxShadow: "0 10px 30px rgba(0,0,0,0.7)",
 		border: "1px solid white",
+		display: "flex",
+		flexDirection: "column",
+		justifyContent: "center",
 	};
+
 	const inputStyle = {
 		width: "100%",
-		padding: "12px",
-		margin: "6px 0",
+		padding: "14px",
+		margin: "8px 0",
 		borderRadius: "10px",
 		border: "none",
 		outline: "none",
@@ -71,60 +84,67 @@ function Login() {
 	};
 
 	const buttonStyle = {
-		width: "200px",
-		padding: "12px",
-		marginTop: "10px",
-		backgroundColor: "#fff",
-		border: "none",
+		width: isMobile ? "100%" : "220px",
+		padding: "14px",
+		marginTop: "20px",
+		backgroundColor: "#db4b4b",
+		border: "2px solid white",
 		borderRadius: "12px",
 		fontWeight: "bold",
-		fontSize: "18px",
-		color: "#023e8a",
+		fontSize: "22px",
+		color: "#fff",
 		cursor: "pointer",
 		transition: "0.3s",
-		alignItems: "center",
-		marginLeft: "60px",
+		alignSelf: "center",
 	};
 
 	return (
 		<div style={style}>
 			<div style={card}>
-				<br />
-				<br />
 				<h2
-					className="text-center"
-					style={{ fontWeight: "bold", color: "white", fontSize: "xx-large" }}>
-					Login to your account
-					<br /> with AppoinTO
+					className="text-center mb-4"
+					style={{
+						fontWeight: "bold",
+						color: "white",
+						fontSize: isMobile ? "1.8rem" : "2.2rem",
+					}}>
+					Login to your account <br /> with AppoinTO
 				</h2>
-				<br />
-				<br />
-				<form onSubmit={handleLogin}>
+
+				<form onSubmit={handleLogin} className="d-flex flex-column">
 					<input
 						name="username"
 						placeholder="Enter Username"
 						onChange={handleChange}
 						style={inputStyle}
+						required
 					/>
-					<br />
-					<br />
 					<input
 						name="password"
 						type="password"
 						placeholder="Enter Password"
 						onChange={handleChange}
 						style={inputStyle}
+						required
 					/>
-					<br />
-					<br />
-					<br />
 
-					<button style={buttonStyle}>Login</button>
+					<button
+						type="submit"
+						style={buttonStyle}
+						onMouseEnter={(e) =>
+							(e.currentTarget.style.backgroundColor = "#db4b4b")
+						}
+						onMouseLeave={(e) =>
+							(e.currentTarget.style.backgroundColor = "#ef233c")
+						}>
+						Login
+					</button>
 				</form>
-				<p style={{ color: "white", textAlign: "center", marginTop: "10px" }}>
+
+				<p style={{ color: "white", textAlign: "center", marginTop: "25px" }}>
 					Don't have an account?{" "}
 					<span
-						style={{ color: "yellow", cursor: "pointer" }}
+						style={{ color: "yellow", cursor: "pointer", fontWeight: "bold" }}
 						onClick={() => navigate("/account", { state: location.state })}>
 						Create one
 					</span>

@@ -1,9 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 
 function Account() {
 	const navigate = useNavigate();
 	const location = useLocation();
+
+	const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+	useEffect(() => {
+		const handleResize = () => setIsMobile(window.innerWidth < 768);
+		window.addEventListener("resize", handleResize);
+		return () => window.removeEventListener("resize", handleResize);
+	}, []);
+
 	const [form, setForm] = useState({
 		username: "",
 		password: "",
@@ -22,17 +30,13 @@ function Account() {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-
 		const existingUsers = JSON.parse(localStorage.getItem("usersArray")) || [];
-
 		existingUsers.push(form);
 		localStorage.setItem("usersArray", JSON.stringify(existingUsers));
-
 		localStorage.setItem("user", JSON.stringify(form));
 		localStorage.setItem("loggedIn", "true");
 
 		alert("Account created successfully!");
-
 		const redirectPath = location.state?.redirectTo;
 		if (redirectPath) {
 			navigate(redirectPath, { state: location.state });
@@ -40,6 +44,7 @@ function Account() {
 			navigate("/dashboard");
 		}
 	};
+
 	const pageStyle = {
 		minHeight: "100vh",
 		backgroundColor: "#f5f3f4",
@@ -47,15 +52,17 @@ function Account() {
 		justifyContent: "center",
 		alignItems: "center",
 		fontFamily: "Times New Roman",
-		padding: "20px",
+		padding: isMobile ? "10px" : "40px",
 	};
 
 	const cardStyle = {
-		width: "600px",
-		padding: "30px",
+		width: "100%",
+		maxWidth: "600px",
+		padding: isMobile ? "20px" : "30px",
 		borderRadius: "20px",
 		background: "linear-gradient(135deg, #0077b6, #023e8a)",
-		marginTop: "10px",
+		marginTop: "20px",
+		marginBottom: "20px",
 		backdropFilter: "blur(12px)",
 		boxShadow: "0 10px 30px rgba(0,0,0,0.7)",
 		border: "1px solid white",
@@ -77,25 +84,27 @@ function Account() {
 	const sectionTitle = {
 		fontWeight: "bold",
 		marginTop: "15px",
-		marginBottom: "5px",
-		fontSize: "20px",
+		marginBottom: "8px",
+		fontSize: isMobile ? "18px" : "20px",
 		color: "white",
+		borderBottom: "1px solid rgba(255,255,255,0.2)",
+		paddingBottom: "5px",
 	};
 
 	const buttonStyle = {
-		width: "300px",
-		padding: "12px",
-		marginTop: "10px",
-		backgroundColor: "#fff",
-		border: "none",
+		width: isMobile ? "100%" : "300px",
+		padding: "14px",
+		marginTop: "20px",
+		backgroundColor: "#db4b4b",
+		border: "2px solid white",
 		borderRadius: "12px",
 		fontWeight: "bold",
-		fontSize: "20px",
-		color: "#023e8a",
+		fontSize: "22px",
+		color: "white",
 		cursor: "pointer",
 		transition: "0.3s",
-		alignItems: "center",
-		marginLeft: "100px",
+		display: "block",
+		margin: "10px auto",
 	};
 
 	return (
@@ -106,12 +115,11 @@ function Account() {
 						textAlign: "center",
 						marginBottom: "15px",
 						fontWeight: "bold",
-						fontSize: "40px",
+						fontSize: isMobile ? "30px" : "40px",
 						color: "white",
 					}}>
 					Create Account
 				</h2>
-				<br />
 				<br />
 				<form onSubmit={handleSubmit}>
 					<div style={sectionTitle}>Login Details</div>
@@ -130,28 +138,29 @@ function Account() {
 						style={inputStyle}
 						required
 					/>
-					<br />
-					<br />
-					<div style={sectionTitle}> Personal Information</div>
+
+					<div style={sectionTitle}>Personal Information</div>
 					<input
 						name="name"
 						placeholder="Enter Full Name"
 						onChange={handleChange}
 						style={inputStyle}
 					/>
-					<input
-						name="age"
-						type="number"
-						placeholder="Enter Age"
-						onChange={handleChange}
-						style={inputStyle}
-					/>
-					<input
-						name="dob"
-						type="date"
-						onChange={handleChange}
-						style={inputStyle}
-					/>
+					<div className="d-flex gap-2">
+						<input
+							name="age"
+							type="number"
+							placeholder="Age"
+							onChange={handleChange}
+							style={inputStyle}
+						/>
+						<input
+							name="dob"
+							type="date"
+							onChange={handleChange}
+							style={inputStyle}
+						/>
+					</div>
 					<input
 						name="email"
 						type="email"
@@ -166,9 +175,8 @@ function Account() {
 						onChange={handleChange}
 						style={inputStyle}
 					/>
-					<br />
-					<br />
-					<div style={sectionTitle}> Medical Information</div>
+
+					<div style={sectionTitle}>Medical Information</div>
 					<input
 						name="bloodGroup"
 						placeholder="Enter Blood Group (e.g. O+, A-)"
@@ -177,28 +185,32 @@ function Account() {
 					/>
 					<textarea
 						name="medicalHistory"
-						placeholder="Enter Medical History (BP, Diabetes, Heart issues, etc.)"
+						placeholder="Enter Medical History (BP, Diabetes, etc.)"
 						onChange={handleChange}
-						style={{
-							...inputStyle,
-							height: "90px",
-							resize: "none",
-						}}
+						style={{ ...inputStyle, height: "80px", resize: "none" }}
 					/>
-					<br />
-					<br />
 
-					<button style={buttonStyle}>Create Account</button>
+					<button
+						type="submit"
+						style={buttonStyle}
+						onMouseEnter={(e) =>
+							(e.currentTarget.style.backgroundColor = "#db4b4b")
+						}
+						onMouseLeave={(e) =>
+							(e.currentTarget.style.backgroundColor = "#ef233c")
+						}>
+						Create Account
+					</button>
 				</form>
-				<br />
-				<p style={{ textAlign: "center", marginTop: "12px", color: " #fff" }}>
+
+				<p style={{ textAlign: "center", marginTop: "20px", color: "#fff" }}>
 					Already have an account? &ensp;
 					<span
 						style={{
-							color: "red",
+							color: "#ffda1f", // Changed to yellow for better visibility
 							fontWeight: "bold",
 							cursor: "pointer",
-							fontSize: "x-large",
+							fontSize: isMobile ? "18px" : "22px",
 						}}
 						onClick={() => navigate("/login")}>
 						Login here

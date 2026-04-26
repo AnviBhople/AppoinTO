@@ -39,7 +39,6 @@ function About() {
 					<h1 className="fw-bold display-4">
 						About <span style={accentStyle}>AppoinTO</span>
 					</h1>
-
 					<p style={{ fontSize: "22px", fontWeight: "bold", color: "#03045e" }}>
 						A simple and trusted way to discover and book healthcare and
 						wellness services.
@@ -53,7 +52,6 @@ function About() {
 					}
 					onMouseLeave={(e) => (e.currentTarget.style.transform = "scale(1)")}>
 					<h2 style={accentStyle}>Who We Are</h2>
-
 					<p style={{ fontSize: "18px", lineHeight: "1.8" }}>
 						AppoinTO is a healthcare appointment booking platform designed to
 						simplify how people connect with medical and wellness professionals.
@@ -76,7 +74,6 @@ function About() {
 					}
 					onMouseLeave={(e) => (e.currentTarget.style.transform = "scale(1)")}>
 					<h2 style={accentStyle}>Our Mission</h2>
-
 					<p style={{ fontSize: "18px", lineHeight: "1.8" }}>
 						Our mission is to make healthcare simple, fast, and accessible by
 						removing barriers between patients and trusted professionals. We aim
@@ -87,7 +84,7 @@ function About() {
 				</div>
 
 				<div className="row text-center mb-5 g-4">
-					<div className="col-md-4">
+					<div className="col-12 col-md-4">
 						<div
 							style={cardStyle}
 							onMouseEnter={(e) =>
@@ -103,7 +100,7 @@ function About() {
 						</div>
 					</div>
 
-					<div className="col-md-4">
+					<div className="col-12 col-md-4">
 						<div
 							style={cardStyle}
 							onMouseEnter={(e) =>
@@ -119,7 +116,7 @@ function About() {
 						</div>
 					</div>
 
-					<div className="col-md-4">
+					<div className="col-12 col-md-4">
 						<div
 							style={cardStyle}
 							onMouseEnter={(e) =>
@@ -143,7 +140,6 @@ function About() {
 					}
 					onMouseLeave={(e) => (e.currentTarget.style.transform = "scale(1)")}>
 					<h2 style={accentStyle}>Why AppoinTO Exists</h2>
-
 					<p style={{ fontSize: "18px", lineHeight: "1.8" }}>
 						Healthcare access should not depend on luck, referrals, or long
 						waiting times. We built AppoinTO because people deserve a faster and
@@ -156,7 +152,6 @@ function About() {
 
 				<div className="text-center mt-5">
 					<h2 style={accentStyle}>Built with Care</h2>
-
 					<p style={{ fontSize: "18px", lineHeight: "1.8" }}>
 						AppoinTO is built to make healthcare feel simpler, more human, and
 						more reliable for everyone.

@@ -56,7 +56,7 @@ function Categories() {
 		color: "#fff",
 		marginTop: "10px",
 		padding: "0 10px",
-		lineHeight: "1.3",
+		lineHeight: "1.2",
 		fontWeight: "normal",
 		textAlign: "justify",
 	};

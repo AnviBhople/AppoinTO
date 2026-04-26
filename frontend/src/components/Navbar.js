@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Logo from "./images/Logo.png";
 
 function Navbar() {
 	const navigate = useNavigate();
+	const [isNavExpanded, setIsNavExpanded] = useState(false);
+
 	const navStyle = {
 		background: "linear-gradient(135deg, #0077b6, #023e8a)",
 		fontFamily: "Times New Roman, serif",
@@ -11,11 +13,7 @@ function Navbar() {
 		fontSize: "x-large",
 	};
 
-	const linkStyle = {
-		fontSize: "18px",
-		color: "#fff",
-		transition: "0.3s",
-	};
+	const linkStyle = { fontSize: "18px", color: "#fff", transition: "0.3s" };
 
 	const btnStyle = {
 		borderRadius: "10px",
@@ -40,28 +38,20 @@ function Navbar() {
 						width="150"
 						height="100"
 						className="me-2"
-						style={{
-							borderRadius: "10px",
-							objectFit: "cover",
-						}}
+						style={{ borderRadius: "10px", objectFit: "cover" }}
 					/>
-					<span
-						style={{
-							color: "#fff",
-							fontWeight: "bold",
-							fontSize: "22px",
-						}}></span>
 				</Link>
 
 				<button
 					className="navbar-toggler bg-light"
 					type="button"
-					data-bs-toggle="collapse"
-					data-bs-target="#navbarContent">
+					onClick={() => setIsNavExpanded(!isNavExpanded)}>
 					<span className="navbar-toggler-icon"></span>
 				</button>
 
-				<div className="collapse navbar-collapse" id="navbarContent">
+				<div
+					className={`collapse navbar-collapse ${isNavExpanded ? "show" : ""}`}
+					id="navbarContent">
 					<ul className="navbar-nav ms-auto align-items-center">
 						{[
 							{ name: "Home", path: "/" },
@@ -77,6 +67,7 @@ function Navbar() {
 									to={item.path}
 									className="nav-link fw-bold"
 									style={linkStyle}
+									onClick={() => setIsNavExpanded(false)}
 									onMouseEnter={(e) =>
 										(e.currentTarget.style.color = "#90e0ef")
 									}
@@ -87,10 +78,13 @@ function Navbar() {
 						))}
 					</ul>
 
-					<div className="ms-3">
+					<div className="ms-lg-3 mt-3 mt-lg-0 text-center">
 						<button
 							style={btnStyle}
-							onClick={() => navigate("/account")}
+							onClick={() => {
+								navigate("/account");
+								setIsNavExpanded(false);
+							}}
 							onMouseEnter={(e) => {
 								e.currentTarget.style.background = "#90e0ef";
 								e.currentTarget.style.color = "#000";
