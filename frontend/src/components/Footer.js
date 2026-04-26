@@ -8,7 +8,7 @@ function Footer() {
 	const footerStyle = {
 		background: "linear-gradient(135deg, #0077b6, #023e8a)",
 		color: "#fff",
-		fontFamily: "Times New Roman",
+		fontFamily: "Arial",
 	};
 
 	const iconStyle = {

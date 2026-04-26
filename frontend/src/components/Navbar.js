@@ -8,7 +8,7 @@ function Navbar() {
 
 	const navStyle = {
 		background: "linear-gradient(135deg, #0077b6, #023e8a)",
-		fontFamily: "Times New Roman, serif",
+		fontFamily: "Arial",
 		backdropFilter: "blur(10px)",
 		fontSize: "x-large",
 	};

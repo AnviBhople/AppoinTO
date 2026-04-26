@@ -72,9 +72,9 @@ function TopRated() {
 							</h5>
 
 							<p
-								className="mt-3 fw-bold"
+								className="mt-3 "
 								style={{
-									fontFamily: "Times New Roman",
+									fontFamily: "Arial",
 									fontSize: "20px",
 									fontWeight: "normal",
 								}}>

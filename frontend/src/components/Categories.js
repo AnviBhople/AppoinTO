@@ -35,7 +35,7 @@ function Categories() {
 
 	const imageStyle = {
 		width: "250px",
-		height: "250px",
+		height: "230px",
 		objectFit: "cover",
 		borderRadius: "10px",
 		marginTop: "10px",
@@ -52,10 +52,11 @@ function Categories() {
 	};
 
 	const aboutStyle = {
-		fontSize: "15px",
+		fontSize: "17px",
 		color: "#fff",
 		marginTop: "10px",
 		padding: "0 10px",
+		fontFamily: "Arial",
 		lineHeight: "1.2",
 		fontWeight: "normal",
 		textAlign: "justify",
@@ -67,7 +68,7 @@ function Categories() {
 			img: healthcareImg,
 			desc: "Doctors, Clinics & Specialists",
 			about:
-				"Healthcare connects you with verified medical professionals including general physicians, specialists, clinics, and diagnostic centers. Whether you need a routine check-up, specialist consultation, or preventive care, you can easily browse trusted providers near your location. Our platform helps you compare ratings, distance, and availability so you can make informed decisions about your health. Book appointments instantly and access quality medical care without long waiting times or confusion.",
+				"Healthcare connects you with verified medical professionals, including general physicians, specialists, and diagnostic centers. Whether you need a routine check-up or specialized care, you can easily browse trusted providers near you. Our platform allows you to compare ratings, distance, and availability to make informed health decisions. Book appointments instantly and access quality medical care without the long wait or confusion.",
 			path: "/healthcare",
 		},
 		{
@@ -75,7 +76,7 @@ function Categories() {
 			img: wellnessImg,
 			desc: "Yoga, Fitness & Spa",
 			about:
-				"Wellness focuses on improving your physical and mental balance through curated services like yoga, fitness training, spa therapy, meditation sessions, and holistic healing centers. These providers help you reduce stress, improve flexibility, build strength, and maintain a healthy lifestyle. Whether you're a beginner or experienced, you can explore different wellness centers that match your goals and schedule. Take control of your lifestyle and invest in long-term health and relaxation.",
+				"Wellness focuses on balancing physical and mental health through yoga, fitness, meditation, and holistic healing. Our curated providers help you reduce stress, build strength, and maintain a healthy lifestyle. Whether you are a beginner or an expert, you can explore centers that match your goals and schedule. Take control of your well-being and invest in long-term health and relaxation.",
 			path: "/wellness",
 		},
 		{
@@ -83,7 +84,7 @@ function Categories() {
 			img: counselingImg,
 			desc: "Therapists & Mental Health",
 			about:
-				"Counseling provides access to certified therapists and mental health professionals who support emotional well-being, stress management, anxiety, depression, relationship issues, and personal growth. In a safe and confidential environment, you can talk openly and receive expert guidance tailored to your needs. The platform helps you find trusted counselors based on ratings, specialization, and proximity, ensuring you get the right support when you need it the most. Your mental health is just as important as your physical health.",
+				"Counseling provides access to certified therapists specializing in stress, anxiety, and personal growth. In a safe, confidential environment, you can receive expert guidance tailored to your specific needs. Our platform helps you find trusted professionals based on ratings and specialization, ensuring you get support when it matters most. Remember, your mental health is just as important as your physical health.",
 			path: "/counseling",
 		},
 	];
